@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\static"
+    "\\static",
+    "\\templates",
+    "\\templates\\layouts",
+    "\\templates\\pages"
   ],
-  "SelectedNode": "\\app.py",
+  "SelectedNode": "\\templates\\pages\\venues.html",
   "PreviewInSolutionExplorer": false
 }

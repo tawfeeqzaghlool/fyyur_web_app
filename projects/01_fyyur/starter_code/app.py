@@ -40,6 +40,10 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    genres = db.Column(db.String(120), nullable=False)
+    website_link = db.Column(db.String(200))
+    seeking_description = db.Column(db.String(1000))
+    shows = db.relationship('Show', backref='Venue', lazy=True, cascade="save-update, merge, delete")
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -54,6 +58,10 @@ class Artist(db.Model):
     genres = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    genres = db.Column(db.String(120), nullable=False)
+    website_link = db.Column(db.String(200))
+    seeking_description = db.Column(db.String(1000))
+    shows = db.relationship('Show', backref='Venue', lazy=True, cascade="save-update, merge, delete")
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -235,10 +243,23 @@ def create_venue_submission():
 def delete_venue(venue_id):
   # TODO: Complete this endpoint for taking a venue_id, and using
   # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
-
+  try:
+        venue_to_delete = Venue.query.get(venue_id)
+        venue_to_delete_name = venue_to_delete.name
+        db.session.delete(venue_to_delete)
+        db.session.commit()
+        flash('Venue ' + venue_to_delete_name + 'with ID: ' + venue_id + ' was successfully deleted!')
+  except:
+        db.session.rollback()
+        flash('please try again. Venue ' + venue_to_delete_name + 'with ID: ' + venue_id + ' could not be deleted.')
+  finally:
+        db.session.close()
+    # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
+    # clicking that button delete it from the db then redirect the user to the homepage
+  return redirect(url_for('index'))
   # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
   # clicking that button delete it from the db then redirect the user to the homepage
-  return None
+
 
 #  Artists
 #  ----------------------------------------------------------------
