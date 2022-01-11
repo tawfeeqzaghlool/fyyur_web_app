@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\migrations",
+    "\\migrations\\versions",
     "\\static",
     "\\templates",
-    "\\templates\\layouts",
-    "\\templates\\pages"
+    "\\venv"
   ],
-  "SelectedNode": "\\templates\\pages\\venues.html",
+  "SelectedNode": "\\models.py",
   "PreviewInSolutionExplorer": false
 }
