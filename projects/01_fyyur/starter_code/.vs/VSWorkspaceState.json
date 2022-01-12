@@ -7,6 +7,6 @@
     "\\templates",
     "\\venv"
   ],
-  "SelectedNode": "\\models.py",
+  "SelectedNode": "\\migrations\\versions\\df34a9d430ea_initial_migration.py",
   "PreviewInSolutionExplorer": false
 }
